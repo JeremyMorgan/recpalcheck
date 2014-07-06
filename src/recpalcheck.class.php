@@ -17,25 +17,24 @@ class RecPalCheck
 
     }
 
-    function isPalindrome($inputstring, $stringlength)
+    function isPalindrome($inputstring)
     {
+        if (strlen($inputstring) <= 1){
+            // if there is only one or zero characters, technically it's a palindrome
+            return true;
+        }
+        else {
 
-      if ( $stringlength <= 1)
-      {
-        // if there is only one or zero characters, technically it's a palindrome
-        return true;
-      }
+            if (substr($inputstring,0,1) == substr($inputstring,(strlen($inputstring) - 1),1)) {
 
-      // checks if first and last characters are equal
-      if (substr($inputstring,0,1) == substr(strrev($inputstring), 0, 1)) 
-      {
-        // if true, cycles calls the function again with decremented string length
-        return $this->isPalindrome($inputstring, ($stringlength -2));
-      }
-      else
-      {
-        // characters didn't match, not a palindrome
-        return false;
-      }
-  }
+                 return $this->isPalindrome(substr($inputstring,1,strlen($inputstring) -2));
+                
+                }
+                else { 
+                
+                    return false; 
+                
+                }
+         }
+    }
 }
